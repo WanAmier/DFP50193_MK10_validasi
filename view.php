@@ -1,19 +1,20 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-<html class="html-tag">
+<html>
 <head>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="body-bg">
-    <div class="card-container">
-        <h2 class="main-title">Keputusan Permohonan</h2>
-        
-        <?php if (isset($_SESSION['data'])): ?>
-            <p class="form-lbl">Nama Pelajar: <?php echo htmlspecialchars($_SESSION['data']['nama']); ?></p>
-            <p class="form-lbl">Alasan: <?php echo htmlspecialchars($_SESSION['data']['alasan']); ?></p>
+<body class="body-container">
+    <div class="card-box">
+        <h2 class="title-header">Ringkasan</h2>
+        <?php if (isset($_SESSION['success_data'])): ?>
+            <div class="success-alert">
+                <p>Nama: <?php echo $_SESSION['success_data']['nama']; ?></p>
+                <p>Matrik: <?php echo $_SESSION['success_data']['matrik']; ?></p>
+                <p>Alasan: <?php echo $_SESSION['success_data']['alasan']; ?></p>
+            </div>
         <?php endif; ?>
-
-        <a href="index.php" class="nav-pautan">Kembali ke Halaman Soalan (a)</a>
+        <a href="index.php" class="nav-pautan">Kembali ke Borang</a>
     </div>
 </body>
 </html>
