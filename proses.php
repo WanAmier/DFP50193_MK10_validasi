@@ -13,7 +13,6 @@ $jantina = trim($_POST['jantina'] ?? '');
 $alasan = trim($_POST['alasan'] ?? '');
 $pengesahan = $_POST['pengesahan'] ?? '';
 
-// Map conditions to their specific error messages
 $rules = [
     ($nama == '') => "Sila masukkan Nama",
     ($matrik == '') => "Sila masukkan No Matriks",
@@ -27,10 +26,10 @@ $rules = [
     (empty($pengesahan)) => "Sila tandakan pengesahan"
 ];
 
-// Get only the messages where the condition was true
-$failed = array_values(array_filter($rules, function($condition) { return $condition; }, ARRAY_FILTER_USE_KEY));
+$failed = array_values(array_filter($rules, function ($condition) {
+    return $condition;
+}, ARRAY_FILTER_USE_KEY));
 
-// THE ONLY IF STATEMENT
 if (!empty($failed) || $_SERVER["REQUEST_METHOD"] != "POST") {
     $_SESSION['errors'] = !empty($failed) ? [$failed[0]] : ["Sila hantar borang dahulu"];
     header("Location: index.php");
