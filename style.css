@@ -1,85 +1,183 @@
+/* 1. Global Page Styles */
 .body-container {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Professional Navy/Royal Blue Gradient */
+    background: linear-gradient(135px, #1e3c72 0%, #2a5298 100%);
     display: flex;
     justify-content: center;
-    padding: 40px;
+    padding: 60px 20px;
+    min-height: 100vh;
+    margin: 0;
 }
 
+.html-root {
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. Main Card Styling */
 .card-box {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    width: 500px;
-    border-top: 10px solid #00796b;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 650px; /* Slightly wider for the 2-column grid */
 }
 
 .title-header {
-    color: #004d40;
+    color: #1e3c72;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 26px;
+    border-bottom: 3px solid #f39c12; /* Orange accent */
+    padding-bottom: 10px;
+}
+
+/* 3. Form Grid Layout (2 Columns) */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: span 2;
 }
 
 .label-text {
     display: block;
-    margin-top: 15px;
+    margin-top: 5px;
     font-weight: 600;
     color: #333;
+    font-size: 14px;
 }
 
+/* 4. Input & Interactive Elements */
 .input-field {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.error-alert {
-    background-color: #ffebee;
-    color: #c62828;
     padding: 12px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    border-left: 5px solid #c62828;
-    font-size: 14px;
-    line-height: 1.6;
+    margin-top: 8px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+    transition: all 0.3s ease;
 }
 
-.success-alert {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    padding: 20px;
-    border-radius: 5px;
+/* Glow Effect on Focus */
+.input-field:focus {
+    border-color: #f39c12;
+    outline: none;
+    box-shadow: 0 0 10px rgba(243, 156, 18, 0.3);
+}
+
+.radio-group {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* 5. Alerts & Notifications */
+.error-alert {
+    background-color: #fdeaea;
+    color: #c0392b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid #c0392b;
+    font-weight: bold;
+    grid-column: span 2;
+}
+
+.success-icon {
+    font-size: 50px;
+    color: #4caf50;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* 6. Result Table Styling (view.php) */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-cell-label {
+    padding: 12px;
+    font-weight: bold;
+    color: #1e3c72;
+    border-bottom: 1px solid #ddd;
+    width: 40%;
+}
+
+.table-cell-value {
+    padding: 12px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 7. Buttons & Navigation */
+.btn-container {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .btn-hantar {
-    background-color: #00796b;
+    background: #f39c12;
     color: white;
-    padding: 12px 20px;
+    padding: 15px 40px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 20px;
+    font-size: 16px;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.btn-hantar:hover {
+    background: #e67e22;
 }
 
 .btn-reset {
-    background-color: #cfd8dc;
-    color: #37474f;
-    padding: 12px 20px;
+    background: none;
+    color: #7f8c8d;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    margin-left: 10px;
+    display: block;
+    margin-top: 15px;
+    text-decoration: underline;
 }
 
 .nav-pautan {
-    display: inline-block;
+    display: block;
+    text-align: center;
     margin-top: 20px;
-    color: #00796b;
-    text-decoration: none;
+    color: #1e3c72;
     font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-pautan:hover {
+    text-decoration: underline;
 }

@@ -1,23 +1,31 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-<html>
-
+<html class="html-root">
 <head>
+    <title>Ringkasan Permohonan</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="body-container">
     <div class="card-box">
-        <h2 class="title-header">Ringkasan</h2>
+        <span class="success-icon">✔</span>
+        <h2 class="title-header">Permohonan Berjaya Diterima</h2>
+        
         <?php if (isset($_SESSION['success_data'])): ?>
-            <div class="success-alert">
-                <p>Nama: <?php echo $_SESSION['success_data']['nama']; ?></p>
-                <p>Matrik: <?php echo $_SESSION['success_data']['matrik']; ?></p>
-                <p>Alasan: <?php echo $_SESSION['success_data']['alasan']; ?></p>
-            </div>
+            <table class="result-table">
+                <?php foreach ($_SESSION['success_data'] as $label => $value): ?>
+                    <tr class="table-row">
+                        <td class="table-cell-label"><?php echo $label; ?></td>
+                        <td class="table-cell-value"><?php echo $value; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php else: ?>
+            <div class="error-alert">Tiada data untuk dipaparkan. Sila isi borang semula.</div>
         <?php endif; ?>
-        <a href="index.php" class="nav-pautan">Kembali ke Borang</a>
+
+        <div class="nav-container">
+            <a href="index.php" class="nav-pautan">← Kembali ke Halaman Borang</a>
+        </div>
     </div>
 </body>
-
 </html>
