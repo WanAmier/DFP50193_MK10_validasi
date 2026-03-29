@@ -13,25 +13,40 @@ $jantina = trim($_POST['jantina'] ?? '');
 $alasan = trim($_POST['alasan'] ?? '');
 $pengesahan = $_POST['pengesahan'] ?? '';
 
-$rules = [
-    ($nama == '') => "Sila masukkan Nama",
-    ($matrik == '') => "Sila masukkan No Matriks",
-    ($no_tel == '') => "Sila masukkan No Telefon",
-    (!preg_match('/^[0-9]{10,11}$/', $no_tel)) => "No Telefon mesti 10 atau 11 digit",
-    ($tarikh == '') => "Sila masukkan Tarikh",
-    ($program == '') => "Sila pilih Program",
-    ($jantina == '') => "Sila pilih Jantina",
-    ($alasan == '') => "Sila masukkan Alasan",
-    (strlen($alasan) < 25) => "Alasan mesti sekurang-kurangnya 25 aksara",
-    (empty($pengesahan)) => "Sila tandakan pengesahan"
-];
-
-$failed = array_values(array_filter($rules, function ($condition) {
-    return $condition;
-}, ARRAY_FILTER_USE_KEY));
-
-if (!empty($failed) || $_SERVER["REQUEST_METHOD"] != "POST") {
-    $_SESSION['errors'] = !empty($failed) ? [$failed[0]] : ["Sila hantar borang dahulu"];
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
+    $_SESSION['errors'] = ["Sila hantar borang dahulu"];
+    header("Location: index.php");
+    exit();
+} elseif ($nama == '') {
+    $_SESSION['errors'] = ["Sila masukkan Nama"];
+    header("Location: index.php");
+    exit();
+} elseif ($matrik == '') {
+    $_SESSION['errors'] = ["Sila masukkan No Matriks"];
+    header("Location: index.php");
+    exit();
+} elseif ($no_tel == '' || !preg_match('/^[0-9]{10,11}$/', $no_tel)) {
+    $_SESSION['errors'] = ["No Telefon diperlukan (10-11 digit)"];
+    header("Location: index.php");
+    exit();
+} elseif ($tarikh == '') {
+    $_SESSION['errors'] = ["Sila masukkan Tarikh"];
+    header("Location: index.php");
+    exit();
+} elseif ($program == '') {
+    $_SESSION['errors'] = ["Sila pilih Program"];
+    header("Location: index.php");
+    exit();
+} elseif ($jantina == '') {
+    $_SESSION['errors'] = ["Sila pilih Jantina"];
+    header("Location: index.php");
+    exit();
+} elseif (strlen($alasan) < 25) {
+    $_SESSION['errors'] = ["Alasan mesti sekurang-kurangnya 25 aksara"];
+    header("Location: index.php");
+    exit();
+} elseif (empty($pengesahan)) {
+    $_SESSION['errors'] = ["Sila tandakan pengesahan"];
     header("Location: index.php");
     exit();
 } else {
@@ -44,6 +59,7 @@ if (!empty($failed) || $_SERVER["REQUEST_METHOD"] != "POST") {
         'jantina' => htmlspecialchars($jantina),
         'alasan' => htmlspecialchars($alasan)
     ];
+    
     unset($_SESSION['inputs']);
     header("Location: view.php");
     exit();
